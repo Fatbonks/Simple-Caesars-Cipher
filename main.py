@@ -1,13 +1,24 @@
 import string
-import re
-letters = list(string.ascii_letters + string.digits + ' ' + string.punctuation)
-print(letters)
 
-encode = input("stuff: ")
-key = int(''.join(re.findall('[0-9-]', input("stuff: "))))
-new_string = []
+encrypted = []
+words_inserted = 0
+print(string.ascii_lowercase)
+print(len(string.ascii_lowercase))
 
-for letter in encode:
-    new_string.append(letters[(letters.index(letter) + key) % len(letters)])
+for i in range(27):
+    encrypted.insert(i, "")
 
-print(new_string)
+encrypted.insert(27, "EOF")
+
+Test_string = "i"
+test_string2 = "c"
+aph_num = 0
+for i in range(len(string.ascii_lowercase) - 1):
+    if test_string2 == string.ascii_lowercase[i]:
+        aph_num = i
+        break
+
+for i in range(27):
+    encrypted.insert(i + aph_num, "i")
+
+print(encrypted)
