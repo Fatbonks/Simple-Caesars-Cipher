@@ -1,24 +1,34 @@
 import string
+import re
 
-encrypted = []
-words_inserted = 0
-print(string.ascii_lowercase)
-print(len(string.ascii_lowercase))
 
-for i in range(27):
-    encrypted.insert(i, "")
+# Asks the user for the word or sentence that they want to encrypt or decrypt #
+def get_sentence(user):
+    # Forces the user to only input sentences that don't have numbers #
+    while True:
+        user = input("Please enter your sentence below\n:")
+        if re.search(r'[0-9]', user_input):
+            print("Please input your sentence again without numbers,\nSpaces and punctuation will work")
+        else:
+            return user
 
-encrypted.insert(27, "EOF")
 
-Test_string = "i"
-test_string2 = "c"
-aph_num = 0
-for i in range(len(string.ascii_lowercase) - 1):
-    if test_string2 == string.ascii_lowercase[i]:
-        aph_num = i
-        break
+# Asks the user for the key/shift #
+def get_key(shift):
+    # Forces the user to only input numbers #
+    while True:
+        try:
+            shift = int(input("Please enter your key below\n:"))
+            return shift
+        except ValueError:
+            print("Please only enter numbers")
 
-for i in range(27):
-    encrypted.insert(i + aph_num, "i")
 
-print(encrypted)
+user_input = ''
+key = 0
+while True:
+    user_input = get_sentence(user_input)
+    key = get_key(key)
+    print(user_input)
+    print(key)
+    break
